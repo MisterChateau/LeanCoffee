@@ -110,8 +110,7 @@ $(function () {
 			"click .content": "editTitle",
 			"focusout .content": "focusOut",
 			"click .delete": "delete",
-			"mousedown .draggable": "sort",
-			"resize .content": "changeHeight"
+			"mousedown .draggable": "sort"
 		},
 
 		//Delete a topic
@@ -186,9 +185,10 @@ $(function () {
 			var self = this;
 			$(".connectSortable" ).sortable({
 				appendTo: "body",
-				helper:"clone",
-				zIndex: 9999,
+				helper:"default",
+				zIndex: 10000,
 				connectWith: ".connectSortable",
+				revert: true,
 
 				stop: function(){
 					$(this).sortable("destroy");
@@ -206,11 +206,6 @@ $(function () {
 					}
 				}
 				});
-		},
-
-		changeHeight: function(){
-			console.log(this.$(".content").height)
-			this.$(".draggable").height = this.$(".content").height
 		},
 
 		template: _.template($("body #topic").html()),
