@@ -44,8 +44,6 @@ $(function () {
 		},
 
 
-
-
 		//Query the Parse Rest API to retrieve each topic and render them
 		loadTopics: function(userName){
 			var self = this;
@@ -63,7 +61,6 @@ $(function () {
 					//render the view and prepend (first Child) to the corresponding board state
 					self.collection.add(results[i]);
 					var state = topicView.model.get("state");
-						;
 
 					if(state == "toDiscuss"){
 					$("#toDiscuss ul").prepend(topicView.render().el);
@@ -103,7 +100,7 @@ $(function () {
 		model: Topic,
 
 		initialize: function(){
-			console.log("==> topicView initialized")
+			console.log("==> topicView initialized");
 		},
 
 		events: {
@@ -255,8 +252,7 @@ $(function () {
 					topicsView.loadTopics(userName);
 				},
 				error: function(user, error){
-					console.log(user+" failed with error: "+error.message);
-          $(".loginFormContainer").effect("bounce", {"direction":"left", "time":2}, "fast");
+          $(".loginFormContainer").effect("shake");
 				}
 			});
 
@@ -291,7 +287,7 @@ $(function () {
 		this.$el.html(this.template);
 		console.log(this);
 		$("body").append(this.el);
-		$(".overlayLogin").slideToggle("slow");
+		$(".overlayLogin").show("puff");
 		return this;
 	}
 	});
@@ -303,7 +299,7 @@ $(function () {
 	//How to pop-up
 	$("#howLogo").click(function(){
 		console.log("clicked");
-		$(".overlayHowTo").slideToggle("slow");
+		$(".overlayHowTo").toggle("puff");
 	});
 
 	//LogOut
