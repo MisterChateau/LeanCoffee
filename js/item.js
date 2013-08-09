@@ -61,6 +61,7 @@ $(function () {
 					var topicView = new TopicView({model: results[i]});
 					topicView.$el.hide();
 					//render the view and prepend (first Child) to the corresponding board state
+					self.collection.add(results[i]);
 					var state = topicView.model.get("state");
 						;
 
@@ -224,8 +225,7 @@ $(function () {
 		template: _.template($("#login").html()),
 
 		initialize: function(){
-
-			this.render();
+		   this.render();
 		},
 
 		events:{
@@ -251,6 +251,7 @@ $(function () {
 					console.log(user+" created");
 					$(".overlayLogin").slideToggle("slow");
 					var userName = Parse.User.current().getUsername();
+					$("li")
 					topicsView.loadTopics(userName);
 				},
 				error: function(user, error){
@@ -262,10 +263,6 @@ $(function () {
 
 		},
 		register: function(){
-			/*var user = new Parse.User();
-			var username = $("input[name=username]").val();
-			var password = $("input[name=password]").val();
-			var repeatPassword = $("input[name=repeatPassword]").val();*/
 			var userInfo = this.getInputValue();
 			var registerButtonText = $(".register").text();
 			if(registerButtonText == "Register"){
@@ -308,7 +305,6 @@ $(function () {
 	$("#howLogo").click(function(){
 		console.log("clicked");
 		$(".overlayHowTo").slideToggle("slow");
-
 	});
 
 	//LogOut

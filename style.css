@@ -51,6 +51,7 @@
     height: 52px;
     margin: 20px auto;
     border-radius: 50px;
+
     -webkit-box-shadow: 0 3px 0 0px #308336;
     box-shadow: 0 3px 0 0px #308336;
 }
@@ -144,17 +145,18 @@ ul li:hover {
 }
 
 .content {
+    display: table-cell;
     position: relative;
     margin: 0 auto;
-    width: 85%;
     min-height: 50px;
+    width: 85%;
     cursor: default;
     float: left;
     border-radius: 5px 0px 0px 5px;
     color: #140a07;
     text-align: center;
     font-size: 18px;
-    outline: 0px solid black;
+    outline: 0 solid transparent;
 }
 
 .clear {
@@ -162,6 +164,7 @@ ul li:hover {
 }
 
 .delete {
+    display: table-cell;
     position: relative;
     top: -15px;
     right: -15px;
@@ -173,7 +176,7 @@ ul li:hover {
     box-shadow: 0px 1px 0px 1px #308336;
     background-color: #77d42a;
     border-radius: 42px;
-
+    display: inline-block;
     color: #306108;
     font-family: arial;
     font-size: 13px;
@@ -195,6 +198,7 @@ ul li:hover {
     width: 940px;
     background-color: #4BC954;
     left: -10px;
+
     -webkit-box-shadow: 0 5px 0px #308336;
     box-shadow: 0 5px 0px #308336;
 }
@@ -227,7 +231,7 @@ ul li:hover {
 .loginFormContainer {
     position: relative;
     width: 400px;
-    background: url("img/Welcome.png")#4BC954 no-repeat top 18px center;
+    background: url("img/Welcome.png")#4BC954 no-repeat top center;
     margin: 10% auto;
     border-radius: 15px;
     z-index: 6000;
