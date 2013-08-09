@@ -256,8 +256,7 @@ $(function () {
 				},
 				error: function(user, error){
 					console.log(user+" failed with error: "+error.message);
-					$(".loginFormContainer").animate({left:"-5px"}, 100);
-					$(".loginFormContainer").delay(100).animate({left:"5px"}, 100);
+          $(".loginFormContainer").effect("bounce", {"direction":"left", "time":2}, "fast");
 				}
 			});
 
