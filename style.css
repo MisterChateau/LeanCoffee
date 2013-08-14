@@ -128,11 +128,6 @@ ul li {
     border-radius: 5px;
 }
 
-ul li:hover {
-    -webkit-box-shadow: 0 2px 0px #308336;
-    box-shadow: 0 2px 0px #308336;
-    top: 3px;
-}
 
 .draggable {
     width: 15%;
@@ -247,7 +242,7 @@ input {
     width: 80%;
     font-size: 18px;
     border-radius: 5px;
-    border: 0 solid transparent;
+    outline: 0 solid transparent;
 }
 
 input:focus {
@@ -299,11 +294,11 @@ input:focus {
 }
 
 #howLogo:hover {
-    -webkit-animation: rotateAnimation 1s infinite;
-    -moz-animation: rotateAnimation 1s infinite;
-    -ms-animation: rotateAnimation 1s infinite;
-    -o-animation: rotateAnimation 1s infinite;
-    animation: rotateAnimation 1s infinite;
+    -webkit-animation: scaleAnimation 1s infinite;
+    -moz-animation: scaleAnimation 1s infinite;
+    -ms-animation: scaleAnimation 1s infinite;
+    -o-animation: scaleAnimation 1s infinite;
+    animation: scaleAnimation 1s infinite;
 }
 
 .howToContainer {
@@ -363,15 +358,15 @@ ol li {
 }
 
 #logOutLogo:hover {
-    -webkit-animation: rotateAnimation 1s infinite;
-    -moz-animation: rotateAnimation 1s infinite;
-    -ms-animation: rotateAnimation 1s infinite;
-    -o-animation: rotateAnimation 1s infinite;
-    animation: rotateAnimation 1s infinite;
+    -webkit-animation: scaleAnimation 1s infinite;
+    -moz-animation: scaleAnimation 1s infinite;
+    -ms-animation: scaleAnimation 1s infinite;
+    -o-animation: scaleAnimation 1s infinite;
+    animation: scaleAnimation 1s infinite;
 }
 
 
-@keyframes "rotateAnimation" {
+@keyframes "scaleAnimation" {
     0% {
         -webkit-transform: scale(1.1);
         -moz-transform: scale(1.1);
@@ -396,7 +391,7 @@ ol li {
 
 }
 
-@-moz-keyframes rotateAnimation {
+@-moz-keyframes scaleAnimation {
     0% {
         -moz-transform: scale(1.1);
         transform: scale(1.1);
@@ -408,11 +403,11 @@ ol li {
     100% {
         -moz-transform: scale(1.1);
         transform: scale(1.1);
-    }
+    }/**/
 
 }
 
-@-webkit-keyframes "rotateAnimation" {
+@-webkit-keyframes "scaleAnimation" {
     0% {
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
@@ -428,7 +423,7 @@ ol li {
 
 }
 
-@-ms-keyframes "rotateAnimation" {
+@-ms-keyframes "scaleAnimation" {
     0% {
         -ms-transform: scale(1.1);
         transform: scale(1.1);
@@ -444,7 +439,7 @@ ol li {
 
 }
 
-@-o-keyframes "rotateAnimation" {
+@-o-keyframes "scaleAnimation" {
     0% {
         -o-transform: scale(1.1);
         transform: scale(1.1);

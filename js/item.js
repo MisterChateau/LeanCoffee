@@ -189,6 +189,7 @@ $(function () {
 				revert: true,
 
 				stop: function(){
+          console.log($(this));
 					$(this).sortable("destroy");
 				},
 
@@ -251,7 +252,8 @@ $(function () {
 					$("li")
 					topicsView.loadTopics(userName);
 				},
-				error: function(user, error){
+				error: function(){
+
           $(".loginFormContainer").effect("shake");
 				}
 			});
