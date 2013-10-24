@@ -107,12 +107,12 @@ $(function () {
 			"keypress .content": "keyPress",
 			"click .content": "editTitle",
 			"focusout .content": "focusOut",
-			"click .delete": "delete",
+			"click .delete": "remove",
 			"mousedown .draggable": "sort"
 		},
 
 		//Delete a topic
-		delete: function(){
+		remove: function(){
 			this.model.destroy();
 			console.log(this.collection);
 			this.$el.fadeOut("slow").remove();
