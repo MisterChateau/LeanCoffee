@@ -226,7 +226,7 @@ ul li {
 .loginFormContainer {
     position: relative;
     width: 400px;
-    background: url("img/Welcome.png")#4BC954 no-repeat top center;
+    background-color: #4BC954;
     margin: 10% auto;
     border-radius: 5px;
     z-index: 6000;
