@@ -1,0 +1,62 @@
+doctype
+html
+  head
+    title Lean Coffee
+    meta(charset="utf-8")
+    link(rel="stylesheet", href="css/main.css")
+    link(href="http://fonts.googleapis.com/css?family=Open+Sans:700", rel="stylesheet", type="text/css")
+  body                                                                              
+    #wrapper
+      #howLogo
+      #logOutLogo
+      .overlayHowTo
+        .howToContainer
+          p Lean Coffee is a simple format for your retrospective:
+          ol
+            li Add your topics using the "+" button.
+            li Drag and Drop to prioritize them by interest.
+            li Move each one through the board and TALK.
+      #appHeader
+        img(src="img/lean-Coffee.png", alt="lean-coffee")
+      #boardWrapper
+        #toDiscuss.board
+          .boardHeader
+          .listContainer
+        #discuss.board
+          .boardHeader
+          .listContainer
+            ul.connectSortable
+        #discussed.board
+          .boardHeader
+          .listContainer
+            ul.connectSortable
+        .clear
+      #footer
+        a#contact(href="http://www.linkedin.com/in/julienchateau")
+          img(alt="contact", src="img/Contact.png")
+        a#leanCoffeeLink(href="http://leancoffee.org")
+          img(alt="leanCoffee.org", src="img/Link.png")
+        .clear
+    script#topic(type="text/template")
+      <div class="content"><%= title %></div>
+      <div class="draggable">
+      <div class="delete">x</div>
+      </div>
+      <div class="clear"></div>
+    script#login(type="text/template")
+      <div class="overlayLogin">
+      <div class="loginFormContainer">
+      <input name="username" type="text" class="input" placeholder="username"></br></br>
+      <input name="password" type="text" class="input" placeholder="password"></br></br>
+      <input name="repeatPassword" class="repeatPassword" type="text" class="input" placeholder="repeat password">
+      <div class="button login"><strong>Login</strong></div>
+      <div class="button register"><strong>Register</strong></div>
+      </div>
+      </div>
+    script(src="js/jquery-2.0.2.js")
+    script(src="js/underscore.js")
+    script(src="js/parse-1.2.8.js")
+    script(src="js/app.js")
+    script(src="http://code.jquery.com/ui/1.10.3/jquery-ui.js")
+
+
