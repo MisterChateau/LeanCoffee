@@ -6,7 +6,9 @@ $(function () {
 		"puojbOL9C0d0mzPb1VZE9Lk8B5TyFFbpMpWX5IFc"
 	);
 
-    var topicsCollection, TopicsView;
+    var topicsCollection,
+        topicsView,
+        socket;
 
 	var Topic = Parse.Object.extend({
 		className: "topic",
@@ -25,18 +27,44 @@ $(function () {
 		className: "connectSortable",
 
 		initialize: function(){
+
+            var self = this;
+
 			this.$el.html("<div id='addButton'></div>");
 			$("#toDiscuss .listContainer").append(this.el);
-		},
+
+            this.collection.on("change", this.broadcastNewTopic, this);
+
+            var serverBaseUrl = document.domain;
+            socket = io.connect(serverBaseUrl);
+            socket.on("topicCreated", function(data){
+                self.insertBroadcastedTopic(data);
+            });
+
+        },
 
 		events: {
 			"click #addButton": "insertTopic"
 		},
 
 		insertTopic: function(){
+
+            console.log("clicked");
             var userName = Parse.User.current().getUsername();
-            this.render(userName);
+
+            var topic = new Topic();
+
+            topic.set({"user": userName});
+
+            topicsCollection.add(topic);
+
+            this.render(topic);
 		},
+
+        insertBroadcastedTopic: function(data){
+            console.log(data);
+        },
+
 
 		loadTopics: function(userName){
 
@@ -70,13 +98,25 @@ $(function () {
 			});
 		},
 
-		render: function(userName){
+          broadcastNewTopic: function(model){
+              console.log("change event triggered");
+              $.ajax({
+                  type: "POST",
+                  url: "/topic",
+                  dataType: "JSON",
+                  data: model.toJSON()
+              })
+                  .done(function (msg) {
+                      console.log("Success " + msg);
+                  })
+                  .fail(function (msg) {
+                      console.log("Fail " + msg);
+                  });
+          },
 
-			var topic = new Topic();
-			topic.set({"user": userName});
-            topicsCollection.add(topic);
+		render: function(topic){
 
-			var topicView = new TopicView({model: topic})
+			var topicView = new TopicView({model: topic});
 
 			topicView.$el.hide();
 			$("#toDiscuss ul").prepend(topicView.render().el);
@@ -101,28 +141,19 @@ $(function () {
                 "click .content": "makeItemEditable",
                 "focusout .content": "validateOnFocus",
                 "click .delete": "removeTopic",
-                "mousedown .draggable": "sort",
-                "resize .content": "changeHeight"
+                "mousedown .draggable": "sort"
             },
 
             removeTopic: function(){
-                topicsCollection.remove(this.model);
                 this.model.destroy();
                 this.$el.fadeOut("slow").remove();
             },
 
             updateTopicTitle: function(value){
                 this.model.set({title: value});
-                topicsCollection.set(this.model);
-                this.model.save(null,
-                    {success: function(){
-                        console.log("Created");
-                    },
+                this.model.save();
 
-                        error: function(){
-                            console.log("error");
-                        }
-                    });
+                topicsView.broadcastNewTopic(this.model);
             },
 
             updateTopicState: function(value){
@@ -146,6 +177,7 @@ $(function () {
                     this.$(".content").blur();
                     var content = this.$(".content").text();
                     this.updateTopicTitle(content);
+
                 }
                 if(this.$(".content").text() == "Enter your Topic"){
                     this.$(".content").text("");
@@ -193,11 +225,6 @@ $(function () {
                     });
             },
 
-            changeHeight: function(){
-                console.log(this.$(".content").height)
-                this.$(".draggable").height = this.$(".content").height
-            },
-
             template: _.template($("body #topic").html()),
 
             render: function(){
@@ -239,9 +266,12 @@ $(function () {
                     success: function(user){
                         console.log(user+" created");
                         $(".overlayLogin").slideToggle("slow");
+
                         var userName = Parse.User.current().getUsername();
                         startApp();
                         topicsView.loadTopics(userName);
+                        socket.emit("joinSession", userName);
+
                     },
                     error: function(user, error){
                         console.log(user+" failed with error: "+error.message);
@@ -290,12 +320,12 @@ $(function () {
         var startApp = function(){
             topicsCollection = new TopicsCollection();
             topicsView = new TopicsView({collection: topicsCollection});
-        }
+
+        };
 
         $("#howLogo").click(function(){
             console.log("clicked");
             $(".overlayHowTo").slideToggle("slow");
-
         });
 
         $("#logOutLogo").click(function(){

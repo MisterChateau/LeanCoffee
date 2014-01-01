@@ -10,19 +10,23 @@ app.set("port", 8080);
 app.set("view engine", "jade");
 app.set("views", __dirname + "/views");
 
+io.sockets.on("connection", function(socket){
+    socket.on("joinSession", function(data){
+        socket.room = data;
+        socket.join(data);
+        console.log(socket);
+    });
+});
 
 app.get("/", function(req, res){
 	res.render("index");
 	}
 );
 
-app.post("/topic", function(req, res) {
-    console.log("===>New Topic Created");
-	var msg = req.body.topic;
-	io.sockets.emit("newTopic", msg);
+app.post("/topic", function(req) {
+	io.sockets.emit("topicCreated", req.body);
 });
 
-//start the server
 http.listen(app.get("port"));
 
 
