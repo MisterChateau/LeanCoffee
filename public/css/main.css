@@ -223,21 +223,21 @@ ul li:hover {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.7);
     width: 100%;
     height: 100%;
-    z-index:6000;
+    z-index: 6000;
 }
 
 .loginFormContainer {
     position: relative;
     width: 400px;
-    background: url("../img/Welcome.png")#4BC954 no-repeat top 18px center;
+    background: url("../img/Welcome.png") #4BC954 no-repeat top 18px center;
     margin: 10% auto;
     border-radius: 15px;
     z-index: 6000;
-    -webkit-box-shadow: 0 0 0 10px rgba(0,0,0,0.7);
-    box-shadow: 0 0 0 10px rgba(0,0,0,0.7);
+    -webkit-box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.7);
     text-align: center;
     padding: 90px 10px 10px 10px;
 }
@@ -290,11 +290,11 @@ input:focus {
     left: 20px;
     width: 48px;
     height: 48px;
-    background: url("../img/Question.png")#4BC954 no-repeat center center;
+    background: url("../img/Question.png") #4BC954 no-repeat center center;
     vertical-align: middle;
     border-radius: 50px;
-    -webkit-box-shadow: 0 0 0 2px rgba(0,0,0,0.7);
-    box-shadow: 0 0 0 2px rgba(0,0,0,0.7);
+    -webkit-box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.7);
     z-index: 9000;
 
 }
@@ -310,11 +310,11 @@ input:focus {
 .howToContainer {
     position: relative;
     width: 400px;
-    background: url("../img/howTo.png")#4BC954 no-repeat top left;
+    background: url("../img/howTo.png") #4BC954 no-repeat top left;
     margin: 10% auto;
     border-radius: 5px;
-    -webkit-box-shadow: 0 0 0 10px rgba(0,0,0,0.7);
-    box-shadow: 0 0 0 10px rgba(0,0,0,0.7);
+    -webkit-box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.7);
     text-align: center;
     padding: 55px 10px 10px 10px;
     text-align: left;
@@ -340,11 +340,12 @@ ol li {
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.7);
     width: 100%;
     height: 100%;
     z-index: 6001;
 }
+
 /*
 * — logout —
 */
@@ -355,13 +356,13 @@ ol li {
     left: 20px;
     width: 48px;
     height: 48px;
-    background: url("../img/48_logout.png")#4BC954 no-repeat center center;
+    background: url("../img/48_logout.png") #4BC954 no-repeat center center;
     background-size: 50%;
     vertical-align: middle;
     border-radius: 50px;
     z-index: 5000;
-    -webkit-box-shadow: 0 0 0 2px rgba(0,0,0,0.7);
-    box-shadow: 0 0 0 2px rgba(0,0,0,0.7);
+    -webkit-box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.7);
 }
 
 #logOutLogo:hover {
@@ -371,7 +372,6 @@ ol li {
     -o-animation: rotateAnimation 1s infinite;
     animation: rotateAnimation 1s infinite;
 }
-
 
 @keyframes "rotateAnimation" {
     0% {

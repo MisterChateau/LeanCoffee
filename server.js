@@ -10,21 +10,20 @@ app.set("port", 8080);
 app.set("view engine", "jade");
 app.set("views", __dirname + "/views");
 
-io.sockets.on("connection", function(socket){
-    socket.on("joinSession", function(data){
-        socket.room = data;
-        socket.join(data);
-        console.log(socket);
-    });
+app.get("/", function (req, res) {
+    res.render("index");
 });
 
-app.get("/", function(req, res){
-	res.render("index");
-	}
-);
+io.sockets.on("connection", function (socket) {
+    socket.on("joinSession", function (data) {
+        socket.room = data;
+        socket.join(data);
+        console.log("room " + socket.room + " has a new user");
+    });
 
-app.post("/topic", function(req) {
-	io.sockets.emit("topicCreated", req.body);
+    app.post("/topic", function (req) {
+        io.sockets.to(socket.room).emit("topicCreated", req.body);
+    });
 });
 
 http.listen(app.get("port"));
