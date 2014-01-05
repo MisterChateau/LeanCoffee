@@ -17,13 +17,21 @@ app.get("/", function (req, res) {
 io.sockets.on("connection", function (socket) {
     socket.on("joinSession", function (data) {
         socket.room = data;
-        socket.join(data);
+        socket.join(socket.room);
         console.log("room " + socket.room + " has a new user");
     });
 
-    app.post("/topic", function (req) {
-        io.sockets.to(socket.room).emit("topicCreated", req.body);
+
+    socket.on("newTopic", function (data) {
+        console.log(socket.room + " " + socket);
+        socket.broadcast.to(socket.room).emit("topicCreated", data);
     });
+    /*
+     app.post("/topic", function (req) {
+     io.sockets.to(socket.room).emit("topicCreated", req.body);
+     console.log(req.body);
+
+     });  */
 });
 
 http.listen(app.get("port"));

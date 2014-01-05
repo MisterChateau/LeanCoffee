@@ -60,8 +60,22 @@ $(function () {
             this.render(topic);
         },
 
-        insertBroadcastedTopic: function (topic) {
-            this.render(topic);
+        insertBroadcastedTopic: function (receivedTopic) {
+            var topic = topicsCollection.get(receivedTopic.objectId);
+
+            if (topic == undefined) {
+                var newTopic = new Topic();
+                newTopic.set(receivedTopic);
+                this.render(newTopic);
+
+            }
+            else {
+                $(".content").each(function () {
+                    if ($(this).text() == topic.attributes.title) {
+                        $(this).text(receivedTopic.title);
+                    }
+                });
+            }
         },
 
 
@@ -97,17 +111,18 @@ $(function () {
             });
         },
 
-        broadcastNewTopic: function (collectionChild) {
-            var topic = collectionChild.attributes;
-            $.ajax({
-                type: "POST",
-                url: "/topic",
-                dataType: "JSON",
-                data: topic
-            })
-                .fail(function (msg) {
-                    console.log("Fail " + msg);
-                });
+        broadcastNewTopic: function (topic) {
+
+            socket.emit("newTopic", topic);
+            /* $.ajax({
+             type: "POST",
+             url: "/topic",
+             dataType: "JSON",
+             data: JSON.stringify(topic)
+             })
+             .fail(function (msg) {
+             console.log("Fail " + msg);
+             });*/
         },
 
         render: function (topic) {
@@ -131,7 +146,6 @@ $(function () {
         events: {
             "keypress .content": "validateOnKeyPress",
             "click .content": "makeItemEditable",
-            "focusout .content": "validateOnFocus",
             "click .delete": "removeTopic",
             "mousedown .draggable": "sort"
         },
@@ -170,12 +184,6 @@ $(function () {
                 this.$(".content").text("");
             }
             this.$el.addClass("highlight");
-        },
-
-        validateOnFocus: function () {
-            this.$el.removeClass("highlight");
-            var content = this.$(".content").text();
-            this.updateTopicTitle(content);
         },
 
         sort: function () {
