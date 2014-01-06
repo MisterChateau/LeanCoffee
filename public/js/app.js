@@ -128,7 +128,10 @@ $(function () {
         removeTopic: function () {
             socket.emit("deleteTopic", this.model.attributes.title);
             this.model.destroy();
-            this.$el.fadeOut("slow").remove();
+            this.$el.fadeOut("slow", function () {
+                this.$el.remove();
+            });
+            ;
         },
 
         removeDeletedTopic: function (topicContent) {
