@@ -118,21 +118,27 @@ $(function () {
             "click .delete": "removeTopic",
             "mousedown .draggable": "sort"
         },
-         initialize: function(){
-          var self = this;
-          socket.on("topicDeleted", function(topic){
-            self.removeDeletedTopic(topic);
-          });
+        initialize: function () {
+            var self = this;
+            socket.on("topicDeleted", function (topicContent) {
+                self.removeDeletedTopic(topicContent);
+            });
         },
-      
+
         removeTopic: function () {
+            socket.emit("deleteTopic", this.model.attributes.title);
             this.model.destroy();
             this.$el.fadeOut("slow").remove();
         },
-        
-        removeDeletedTopic: function(topic){
-            console.log(this.$el.html());
-            this.$el.fadeOut("slow").remove();
+
+        removeDeletedTopic: function (topicContent) {
+            $(".content").each(function () {
+                if ($(this).text() == topicContent) {
+                    $(this).parent().fadeOut("slow", function () {
+                        $(this).remove();
+                    });
+                }
+            });
         },
 
         updateTopicTitle: function (value) {
