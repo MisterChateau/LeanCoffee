@@ -26,12 +26,11 @@ io.sockets.on("connection", function (socket) {
         console.log(socket.room + " " + socket);
         socket.broadcast.to(socket.room).emit("topicCreated", data);
     });
-    /*
-     app.post("/topic", function (req) {
-     io.sockets.to(socket.room).emit("topicCreated", req.body);
-     console.log(req.body);
-
-     });  */
+    
+    socket.on("deleteTopic", function(data){
+        console.log(socket.room + " delete " + socket);
+        socket.broadcast.to(socket.room).emit("topicDeleted", data);
+    });
 });
 
 http.listen(app.get("port"));
