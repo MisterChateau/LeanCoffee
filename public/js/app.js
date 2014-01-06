@@ -27,7 +27,6 @@ $(function () {
         className: "connectSortable",
 
         initialize: function () {
-
             var self = this;
 
             this.$el.html("<div id='addButton'></div>");
@@ -48,26 +47,19 @@ $(function () {
         },
 
         insertTopic: function () {
-
             var userName = Parse.User.current().getUsername();
-
             var topic = new Topic();
-
             topic.set({"user": userName});
-
             topicsCollection.add(topic);
-
             this.render(topic);
         },
 
         insertBroadcastedTopic: function (receivedTopic) {
             var topic = topicsCollection.get(receivedTopic.objectId);
-
             if (topic == undefined) {
                 var newTopic = new Topic();
                 newTopic.set(receivedTopic);
                 this.render(newTopic);
-
             }
             else {
                 $(".content").each(function () {
@@ -80,25 +72,17 @@ $(function () {
 
 
         loadTopics: function (userName) {
-
             var query = new Parse.Query("topic");
-
             query.equalTo("user", userName);
-
             query.find({success: function (results) {
-
                 for (var i = 0; i < results.length; i++) {
-
                     topicsCollection.add(results[i]);
-
                     var topicView = new TopicView({model: results[i]});
                     topicView.$el.hide();
                     var state = topicView.model.get("state");
-
                     if (state == "toDiscuss") {
                         $("#" + state + " ul").prepend(topicView.render().el);
                     }
-
                     else if (state == "discuss") {
                         $("#" + state + " ul").prepend(topicView.render().el);
                     }
@@ -112,46 +96,42 @@ $(function () {
         },
 
         broadcastNewTopic: function (topic) {
-
             socket.emit("newTopic", topic);
-            /* $.ajax({
-             type: "POST",
-             url: "/topic",
-             dataType: "JSON",
-             data: JSON.stringify(topic)
-             })
-             .fail(function (msg) {
-             console.log("Fail " + msg);
-             });*/
         },
 
         render: function (topic) {
-
             var topicView = new TopicView({model: topic});
-
             topicView.$el.hide();
             $("#toDiscuss ul").prepend(topicView.render().el);
             topicView.$el.fadeIn("slow");
-
             $(".content").eq(0).attr("contentEditable", "true");
             $(".content").eq(0).focus();
         }
     });
 
     var TopicView = Parse.View.extend({
-
         tagName: "li",
         model: Topic,
-
         events: {
             "keypress .content": "validateOnKeyPress",
             "click .content": "makeItemEditable",
             "click .delete": "removeTopic",
             "mousedown .draggable": "sort"
         },
-
+         initialize: function(){
+          var self = this;
+          socket.on("topicDeleted", function(topic){
+            self.removeDeletedTopic(topic);
+          });
+        },
+      
         removeTopic: function () {
             this.model.destroy();
+            this.$el.fadeOut("slow").remove();
+        },
+        
+        removeDeletedTopic: function(topic){
+            console.log(this.$el.html());
             this.$el.fadeOut("slow").remove();
         },
 
@@ -171,7 +151,6 @@ $(function () {
                 this.$(".content").blur();
                 var content = this.$(".content").text();
                 this.updateTopicTitle(content);
-
             }
             if (this.$(".content").text() == "Enter your Topic") {
                 this.$(".content").text("");
