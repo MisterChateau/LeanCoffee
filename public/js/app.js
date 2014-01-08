@@ -126,10 +126,11 @@ $(function () {
         },
 
         removeTopic: function () {
+            var self = this;
             socket.emit("deleteTopic", this.model.attributes.title);
             this.model.destroy();
             this.$el.fadeOut("slow", function () {
-                this.$el.remove();
+                self.$el.remove();
             });
             ;
         },
@@ -151,7 +152,6 @@ $(function () {
 
         updateTopicState: function (value) {
             this.model.set({state: value});
-            topicsCollection.set(this.model);
             this.model.save();
         },
 
