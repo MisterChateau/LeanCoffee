@@ -6,7 +6,7 @@ var path = require("path");
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.bodyParser());
-app.set("port", 8080);
+app.set("port", process.env.port);
 app.set("view engine", "jade");
 app.set("views", __dirname + "/views");
 
@@ -26,14 +26,14 @@ io.sockets.on("connection", function (socket) {
         console.log(socket.room + " " + socket);
         socket.broadcast.to(socket.room).emit("topicCreated", data);
     });
-    
-    socket.on("deleteTopic", function(data){
+
+    socket.on("deleteTopic", function (data) {
         console.log(socket.room + " delete " + socket);
         socket.broadcast.to(socket.room).emit("topicDeleted", data);
     });
 });
 
-http.listen(app.get("port"));
+http.listen(app.get("port") || 5000);
 
 
 

@@ -262,6 +262,11 @@ $(function () {
                 $(".repeatPassword").slideToggle("slow");
                 $(".login").slideToggle("slow");
                 $(".register").text("Validate");
+
+                var userName = Parse.User.current().getUsername();
+                startApp();
+                topicsView.loadTopics(userName);
+                socket.emit("joinSession", userName);
             }
             else {
                 if (userInfo.password == userInfo.repeatPassword) {
