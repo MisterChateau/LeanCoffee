@@ -70,7 +70,6 @@ $(function () {
             }
         },
 
-
         loadTopics: function (userName) {
             var query = new Parse.Query("topic");
             query.equalTo("user", userName);
@@ -98,6 +97,7 @@ $(function () {
         broadcastNewTopic: function (topic) {
             socket.emit("newTopic", topic);
         },
+
 
         render: function (topic) {
             var topicView = new TopicView({model: topic});
@@ -132,7 +132,7 @@ $(function () {
             this.$el.fadeOut("slow", function () {
                 self.$el.remove();
             });
-            ;
+
         },
 
         removeDeletedTopic: function (topicContent) {
@@ -305,6 +305,8 @@ $(function () {
 
     $("#logOutLogo").click(function () {
         Parse.User.logOut();
+        topicsView.$el.remove();
+        $(".listContainer li").remove();
         loginView.render();
     });
 });
