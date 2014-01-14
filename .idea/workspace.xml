@@ -11,7 +11,7 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/item.js" changelist="4a0bd212-6aea-47c6-97cc-73782b5a3ad9" time="1375982843619" ignored="false" />
     <file path="/a.js" changelist="4a0bd212-6aea-47c6-97cc-73782b5a3ad9" time="1372852972724" ignored="false" />
-    <file path="/Dummy.txt" changelist="4a0bd212-6aea-47c6-97cc-73782b5a3ad9" time="1389636425415" ignored="false" />
+    <file path="/Dummy.txt" changelist="4a0bd212-6aea-47c6-97cc-73782b5a3ad9" time="1389628510233" ignored="false" />
     <file path="/boards.html" changelist="4a0bd212-6aea-47c6-97cc-73782b5a3ad9" time="1375972945586" ignored="false" />
     <file path="$PROJECT_DIR$/../../Random/tuto backbone/12-todos-mini-project-with-homework/12-todos-mini-project-with-homework/js/main.js" changelist="4a0bd212-6aea-47c6-97cc-73782b5a3ad9" time="1373804177019" ignored="false" />
     <file path="/main.js" changelist="4a0bd212-6aea-47c6-97cc-73782b5a3ad9" time="1373804158638" ignored="false" />
@@ -99,7 +99,7 @@
       <file leaf-file-name="server.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="35" selection-start="1057" selection-end="1057" vertical-scroll-proportion="0.0">
+            <state line="35" column="35" selection-start="1059" selection-end="1059" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -117,7 +117,7 @@
       <file leaf-file-name="package.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="24" selection-start="323" selection-end="323" vertical-scroll-proportion="2.357143">
+            <state line="13" column="20" selection-start="287" selection-end="287" vertical-scroll-proportion="-8.821428">
               <folding />
             </state>
           </provider>
@@ -626,14 +626,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="35" selection-start="1057" selection-end="1057" vertical-scroll-proportion="0.0">
+        <state line="35" column="35" selection-start="1059" selection-end="1059" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="24" selection-start="323" selection-end="323" vertical-scroll-proportion="2.357143">
+        <state line="13" column="20" selection-start="287" selection-end="287" vertical-scroll-proportion="-8.821428">
           <folding />
         </state>
       </provider>
