@@ -177,7 +177,7 @@ $(function () {
         sort: function () {
             var self = this;
             $(".connectSortable").sortable({
-                appendTo: "body",
+                appendTo: "div#boardWrapper",
                 helper: "default",
                 zIndex: 9999,
                 connectWith: ".connectSortable",
