@@ -177,8 +177,8 @@ $(function () {
         sort: function () {
             var self = this;
             $(".connectSortable").sortable({
-                appendTo: "div#boardWrapper",
-                helper: "default",
+                appendTo: "body",
+                helper: "clone",
                 zIndex: 9999,
                 connectWith: ".connectSortable",
 
@@ -187,6 +187,7 @@ $(function () {
                 },
 
                 change: function () {
+
                     if ($(this).parents("#discuss").length > 0) {
                         self.updateTopicState("discuss");
                     }
@@ -310,4 +311,3 @@ $(function () {
         loginView.render();
     });
 });
-

@@ -117,7 +117,7 @@ ul {
     min-height: 200px;
 }
 
-ul li {
+li {
     position: relative;
     min-height: 50px;
     width: 90%;
@@ -129,7 +129,7 @@ ul li {
     border-radius: 5px;
 }
 
-ul li:hover {
+li:hover {
     -webkit-box-shadow: 0 2px 0px #308336;
     box-shadow: 0 2px 0px #308336;
     top: 3px;
